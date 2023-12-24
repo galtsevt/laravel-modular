@@ -2,8 +2,8 @@
 
 namespace Modules\{{ ucFirstName }}\App\Providers;
 
-use Galtsevt\Modular\App\Modular\Module;
-use Galtsevt\Modular\App\Modular\ModuleProvider;
+use Galtsevt\LaravelModular\App\Modular\Module;
+use Galtsevt\LaravelModular\App\Modular\ModuleProvider;
 
 class {{ ucFirstName }}ModuleProvider extends ModuleProvider
 {

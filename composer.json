@@ -1,5 +1,5 @@
 {
-    "name": "galtsevt/modular",
+    "name": "galtsevt/laravel-modular",
     "description": "Modular architecture for laravel",
     "minimum-stability": "stable",
     "license": "MIT",
@@ -11,10 +11,15 @@
     ],
     "require": {
     },
+    "autoload": {
+        "psr-4": {
+            "Galtsevt\\LaravelModular\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "Galtsevt\\Modular\\App\\Providers\\ModularServiceProvider"
+                "Galtsevt\\LaravelModular\\App\\Providers\\ModularServiceProvider"
             ]
         }
     }

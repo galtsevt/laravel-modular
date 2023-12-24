@@ -1,6 +1,6 @@
 <?php
 
-namespace Galtsevt\Modular\App\Facades;
+namespace Galtsevt\LaravelModular\App\Facades;
 
 use Galtsevt\Modular\App\Modular\Module;
 use Galtsevt\Modular\App\Modular\ModulesManager;

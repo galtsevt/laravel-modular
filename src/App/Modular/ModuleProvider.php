@@ -1,8 +1,8 @@
 <?php
 
-namespace Galtsevt\Modular\App\Modular;
+namespace Galtsevt\LaravelModular\App\Modular;
 
-use Galtsevt\Modular\App\Facades\Modules;
+use Galtsevt\LaravelModular\App\Facades\Modules;
 
 abstract class ModuleProvider extends \Illuminate\Support\ServiceProvider
 {

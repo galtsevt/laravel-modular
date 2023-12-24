@@ -1,6 +1,6 @@
 <?php
 
-namespace Galtsevt\Modular\App\Modular;
+namespace Galtsevt\LaravelModular\App\Modular;
 
 class ModulesManager
 {

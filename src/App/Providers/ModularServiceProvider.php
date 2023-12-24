@@ -1,9 +1,9 @@
 <?php
 
-namespace Galtsevt\Modular\App\Providers;
+namespace Galtsevt\LaravelModular\App\Providers;
 
-use Galtsevt\Modular\App\Commands\MakeModuleCommand;
-use Galtsevt\Modular\App\Modular\ModulesManager;
+use Galtsevt\LaravelModular\App\Commands\MakeModuleCommand;
+use Galtsevt\LaravelModular\App\Modular\ModulesManager;
 use Illuminate\Support\ServiceProvider;
 
 class ModularServiceProvider extends ServiceProvider
