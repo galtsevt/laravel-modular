@@ -1,0 +1,21 @@
+{
+    "name": "galtsevt/modular",
+    "description": "Modular architecture for laravel",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Galtsev Timofey",
+            "email": "galtsev.t@yandex.ru"
+        }
+    ],
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Galtsevt\\Modular\\App\\Providers\\ModularServiceProvider"
+            ]
+        }
+    }
+}

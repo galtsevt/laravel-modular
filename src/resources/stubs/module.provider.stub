@@ -1,0 +1,36 @@
+<?php
+
+namespace Modules\{{ ucFirstName }}\App\Providers;
+
+use Galtsevt\Modular\App\Modular\Module;
+use Galtsevt\Modular\App\Modular\ModuleProvider;
+
+class {{ ucFirstName }}ModuleProvider extends ModuleProvider
+{
+
+    protected string $name = '{{ name }}';
+
+    public function register(): void
+    {
+        // app init
+    }
+
+    protected function run(): void
+    {
+        // after init app
+    }
+
+    protected function getModule(): Module
+    {
+        return new Module(
+            key: '{{ name }}',
+            name: 'Новый модуль',
+        );
+    }
+
+    protected function getDir(): string
+    {
+        return __DIR__;
+    }
+
+}
