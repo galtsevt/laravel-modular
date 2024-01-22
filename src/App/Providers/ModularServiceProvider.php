@@ -21,5 +21,13 @@ class ModularServiceProvider extends ServiceProvider
                 MakeModuleCommand::class
             ]);
         }
+
+        $this->publishes([
+            __DIR__.'/../../config/modules.php' => config_path('modules.php'),
+        ], 'laravel-modular');
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/modules.php', 'modules'
+        );
     }
 }

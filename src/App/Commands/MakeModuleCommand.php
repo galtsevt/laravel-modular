@@ -42,8 +42,16 @@ class MakeModuleCommand extends Command
         }
 
         if (File::makeDirectory($modulePath, 0777)) {
-            File::copyDirectory(__DIR__ . '/../../example/App', $modulePath . DS . 'App');
-            File::copyDirectory(__DIR__ . '/../../example/database', $modulePath . DS . 'database');
+            if (File::makeDirectory($modulePath . DS . 'App', 0777)) {
+                File::makeDirectory($modulePath . DS . 'App' . DS . 'Providers', 0777);
+                File::makeDirectory($modulePath . DS . 'App' . DS . 'Models', 0777);
+                File::makeDirectory($modulePath . DS . 'App' . DS . 'Controllers', 0777);
+                File::makeDirectory($modulePath . DS . 'App' . DS . 'Requests', 0777);
+                File::makeDirectory($modulePath . DS . 'App' . DS . 'Resources', 0777);
+            }
+            if (File::makeDirectory($modulePath . DS . 'database', 0777)) {
+                File::makeDirectory($modulePath . DS . 'database' . DS . 'migrations', 0777);
+            }
             File::copyDirectory(__DIR__ . '/../../example/routes', $modulePath . DS . 'routes');
             File::put($this->getModuleProviderPath($modulePath, $moduleName), $this->buildModuleProviderClass($moduleName));
             $this->components->info(sprintf('%s [%s] created successfully.', $moduleName, $modulePath));
