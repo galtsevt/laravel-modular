@@ -9,8 +9,6 @@ abstract class ModuleProvider extends \Illuminate\Support\ServiceProvider
     protected string $name;
     protected Module $module;
 
-    abstract protected function init(): void;
-
     abstract protected function run(): void;
 
     abstract protected function getModule(): Module;
