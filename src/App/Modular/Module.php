@@ -2,18 +2,15 @@
 
 namespace Galtsevt\LaravelModular\App\Modular;
 
+use Galtsevt\LaravelModular\App\Contracts\ModuleManager;
+
 class Module
 {
     protected bool $active = false;
     protected bool $current = false;
-
-    public function __construct(
-        protected string  $key,
-        protected ?string $name = null
-    )
-    {
-        $this->active = (bool)config('modules.' . $this->key . '.active');
-    }
+    protected string $key = 'module';
+    protected string $name = 'ModuleName';
+    protected ModuleManager $manager;
 
     public function getName(): string
     {
@@ -27,17 +24,17 @@ class Module
 
     public function isActive(): bool
     {
-        return $this->active;
+        return $this->manager->moduleIsActive($this->getKey());
     }
 
     public function isCurrent(): bool
     {
-        return $this->current;
+        return $this->manager->getCurrent()?->getKey() == $this->getKey();
     }
 
-    public function setCurrent(): static
+    public function setManager(ModuleManager $manager): static
     {
-        $this->current = true;
+        $this->manager = $manager;
         return $this;
     }
 

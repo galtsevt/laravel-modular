@@ -2,6 +2,7 @@
 
 namespace Galtsevt\LaravelModular\App\Commands;
 
+use Galtsevt\LaravelModular\App\Services\Stub;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -24,6 +25,7 @@ class MakeModuleCommand extends Command
     /**
      * Execute the console command.
      */
+
     public function handle(): bool
     {
         define("DS", DIRECTORY_SEPARATOR);
@@ -53,7 +55,13 @@ class MakeModuleCommand extends Command
                 File::makeDirectory($modulePath . DS . 'database' . DS . 'migrations', 0777);
             }
             File::copyDirectory(__DIR__ . '/../../example/routes', $modulePath . DS . 'routes');
-            File::put($this->getModuleProviderPath($modulePath, $moduleName), $this->buildModuleProviderClass($moduleName));
+            File::put(
+                $this->getModuleProviderPath($modulePath, $moduleName),
+                $this->renderStub('module.provider.stub', [
+                    'ucFirstName' => ucfirst($moduleName),
+                    'name' => $moduleName,
+                ])
+            );
             $this->components->info(sprintf('%s [%s] created successfully.', $moduleName, $modulePath));
             return true;
         }
@@ -61,10 +69,10 @@ class MakeModuleCommand extends Command
         return false;
     }
 
-    protected function buildModuleProviderClass($moduleName): string
+    protected function renderStub(string $stub, array $data): string
     {
-        $stub = File::get(__DIR__ . '/../../resources/stubs/module.provider.stub');
-        return str_replace(['{{ ucFirstName }}', '{{ name }}'], [ucfirst($moduleName), $moduleName], $stub);
+        $stubService = new Stub();
+        return $stubService->render($stub, $data);
     }
 
     protected function getModuleProviderPath($modulePath, $moduleName): string

@@ -24,13 +24,8 @@ class {{ ucFirstName }}ModuleProvider extends ModuleProvider
     {
         return new Module(
             key: '{{ name }}',
-            name: 'Новый модуль',
+            name: '{{ name }}',
         );
-    }
-
-    protected function getDir(): string
-    {
-        return __DIR__;
     }
 
 }

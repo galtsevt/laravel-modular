@@ -13,7 +13,11 @@ abstract class ModuleProvider extends \Illuminate\Support\ServiceProvider
 
     abstract protected function getModule(): Module;
 
-    abstract protected function getDir(): string;
+    protected function getDir(): string
+    {
+        $reflector = new \ReflectionClass($this);
+        return dirname($reflector->getFileName());
+    }
 
     protected function registerResources(): void
     {
