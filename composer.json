@@ -9,9 +9,6 @@
             "email": "galtsev.t@yandex.ru"
         }
     ],
-    "require": {
-        "laravel/framework": "^10.00"
-    },
     "require-dev": {
         "phpunit/phpunit": "^10.5"
     },
