@@ -7,11 +7,10 @@ use Galtsevt\LaravelModular\App\Facades\Modules;
 abstract class ModuleProvider extends \Illuminate\Support\ServiceProvider
 {
     protected string $name;
+    protected string $moduleClass;
     protected Module $module;
 
     abstract protected function run(): void;
-
-    abstract protected function getModule(): Module;
 
     protected function getDir(): string
     {
@@ -22,16 +21,16 @@ abstract class ModuleProvider extends \Illuminate\Support\ServiceProvider
     protected function registerResources(): void
     {
         $this->loadMigrationsFrom($this->getDir() . '/../../database/migrations');
-        $this->loadViewsFrom($this->getDir() . '/../../resources/views', $this->name);
+        $this->loadViewsFrom($this->getDir() . '/../../resources/views', $this->module->getKey());
         $this->loadRoutesFrom($this->getDir() . '/../../routes/web.php');
         $this->publishes([
-            $this->getDir() . '/../../resources/views' => resource_path('views/vendor/' . $this->name),
+            $this->getDir() . '/../../resources/views' => resource_path('views/vendor/' . $this->module->getKey()),
         ], 'module-resources');
     }
 
     public function boot(): void
     {
-        $this->module = $this->getModule();
+        $this->module = new $this->moduleClass;
         Modules::register($this->module);
         $this->registerResources();
         $this->run();

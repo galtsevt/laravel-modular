@@ -9,6 +9,7 @@ class {{ ucFirstName }}ModuleProvider extends ModuleProvider
 {
 
     protected string $name = '{{ name }}';
+    protected string $moduleClass = Module::class;
 
     public function register(): void
     {
@@ -18,14 +19,6 @@ class {{ ucFirstName }}ModuleProvider extends ModuleProvider
     protected function run(): void
     {
         // after init app
-    }
-
-    protected function getModule(): Module
-    {
-        return new Module(
-            key: '{{ name }}',
-            name: '{{ name }}',
-        );
     }
 
 }
